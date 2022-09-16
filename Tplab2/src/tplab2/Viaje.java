@@ -79,4 +79,8 @@ public class Viaje {
         
     }
     
+        public double calcularCosteDeCombustible(Double distancia) {
+        return 0d;
+    }
+    
 }
