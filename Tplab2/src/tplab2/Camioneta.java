@@ -5,7 +5,6 @@ package tplab2;
 public class Camioneta extends Vehiculo { 
 
 
-
     public Camioneta() {
     }
 
@@ -14,8 +13,8 @@ public class Camioneta extends Vehiculo {
     }
 
     @Override
-    double calcularCosteDeCombustible() {
-        return super.calcularCosteDeCombustible();
+    public double calcularCosteDeCombustible(Double distancia) {
+        return ((distancia/100)*10);
     }
 
     
