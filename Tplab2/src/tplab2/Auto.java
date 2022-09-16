@@ -43,6 +43,7 @@ public class Auto extends Vehiculo {
 
     @Override
     public Auto crearVehiculo() {
+        this.combustible = new Combustible();
         System.out.println("Ingrese la marca de su vehículo");
         marca = leer.next();
         System.out.println("Ingrese el tipo de combustible de su vehículo");
