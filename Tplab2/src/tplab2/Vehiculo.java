@@ -2,7 +2,7 @@
 package tplab2;
 
 
-public class Vehiculo {
+public abstract class Vehiculo {
     protected String marca;
     protected String patente;
     protected Combustible combustible;
@@ -40,7 +40,7 @@ public class Vehiculo {
         this.combustible = combustible;
     }
     
-     double calcularCosteDeCombustible(){
+    public double calcularCosteDeCombustible(Double distancia){
         return 0d;
     }
     

@@ -12,8 +12,8 @@ public class Camion extends Vehiculo {
     }
 
     @Override
-    double calcularCosteDeCombustible() {
-        return super.calcularCosteDeCombustible();
+    public double calcularCosteDeCombustible(Double distancia) {
+        return ((distancia/100)*12);
     }
 
     
