@@ -1,8 +1,7 @@
-
 package tplab2;
 
+public abstract class Vehiculo<T> {
 
-public abstract class Vehiculo {
     protected String marca;
     protected String patente;
     protected Combustible combustible;
@@ -39,9 +38,11 @@ public abstract class Vehiculo {
     public void setCombustible(Combustible combustible) {
         this.combustible = combustible;
     }
-    
-    public double calcularCosteDeCombustible(Double distancia){
+
+    public double calcularCosteDeCombustible(Double distancia) {
         return 0d;
     }
-    
+
+    public abstract T crearVehiculo();
+
 }
