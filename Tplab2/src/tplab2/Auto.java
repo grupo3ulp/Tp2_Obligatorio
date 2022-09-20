@@ -38,15 +38,15 @@ public class Auto extends Vehiculo {
     
     @Override
     public double calcularCosteDeCombustible(Double distancia) {
-        return ((distancia / 100) * 7);
+        return (((distancia / 100) * 7)*combustible.getPrecio());
     }
 
     @Override
     public Auto crearVehiculo() {
         this.combustible = new Combustible();
-        System.out.println("Ingrese la marca de su vehículo");
+        System.out.println("Ingrese la marca de su auto");
         marca = leer.next();
-        System.out.println("Ingrese el tipo de combustible de su vehículo");
+        System.out.println("Ingrese el tipo de combustible de su auto");
         combustible.setTipo(leer.next());
         System.out.println("Ingrese el precio por litro de su combustible");
         combustible.setPrecio(leer.nextDouble());
@@ -54,5 +54,6 @@ public class Auto extends Vehiculo {
         patente = leer.next();
         return this;
     }
+
 
 }

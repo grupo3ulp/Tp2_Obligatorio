@@ -45,4 +45,11 @@ public abstract class Vehiculo<T> {
 
     public abstract T crearVehiculo();
 
+    @Override
+    public String toString() {
+        return "Vehiculo [Combustible: " + combustible + ", Marca: " + marca + ", Patente: " + patente + "]";
+    }
+
+    
+
 }

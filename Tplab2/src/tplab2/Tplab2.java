@@ -6,12 +6,14 @@ import java.util.Scanner;
 
 public class Tplab2 {
 
-    public static Scanner leer = new Scanner(System.in).useDelimiter("\n");
+    public static Scanner leer = new Scanner(System.in);
 
     public static void main(String[] args) {
         String ciuo, ciud;
         boolean flag = true;
         boolean flag1 = true;
+
+        Viaje v = new Viaje();
 
         ArrayList<Ciudad> ciudades = new ArrayList();
         Ciudad c1 = new Ciudad(10, 1d, "Latia");
@@ -37,6 +39,7 @@ public class Tplab2 {
             for (Ciudad ciudade : ciudades) {
                 if (ciudade.getNombre().equalsIgnoreCase(ciuo)) {
                     System.out.println("Ciudad de origen guardada correctamente.");
+                    v.setCiudadDeOrigen(ciudade);
                     flag = false;
                 }
             }
@@ -56,6 +59,8 @@ public class Tplab2 {
                 for (Ciudad ciudade : ciudades) {
                     if (ciudade.getNombre().equalsIgnoreCase(ciud)) {
                         System.out.println("Ciudad de destino guardada correctamente.");
+                        v.setCiudadDeDestino(ciudade);
+                        v.calcularDistancia();
                         flag1 = false;
                     }
                 }
@@ -68,31 +73,44 @@ public class Tplab2 {
             System.out.println("_____________________________________________________________________");
         } while (flag1);
 
+        System.out.println("¿Cuántos peajes hay entre las ciudades?");
+        int peajes = leer.nextInt();
+        v.setCantidadDePeajes(peajes);
+
         do {
             System.out.println("A continuación ingrese los datos de su vehículo:");
             System.out.println("¿Qué tipo de vehículo tiene? (Auto, camion, camioneta)");
             String vehi = leer.next();
-            if (!vehi.equalsIgnoreCase("auto") && !vehi.equalsIgnoreCase("camion") && !vehi.equalsIgnoreCase("camioneta")) {
+            if (!vehi.equalsIgnoreCase("auto") && !vehi.equalsIgnoreCase("camion")
+                    && !vehi.equalsIgnoreCase("camioneta")) {
                 System.out.println("Tipo de vehículo inválido");
             } else {
                 switch (vehi) {
                     case "auto":
                         Auto a = new Auto();
                         a.crearVehiculo();
+                        v.setVehiculo(a);
                         break;
                     case "camioneta":
                         Camioneta c = new Camioneta();
                         c.crearVehiculo();
+                        v.setVehiculo(c);
                         break;
                     case "camion":
                         Camion ca = new Camion();
                         ca.crearVehiculo();
+                        v.setVehiculo(ca);
                         break;
                 }
             }
 
         } while (flag);
 
+        System.out.println(v);
+
+        System.out.println("El costo total de peajes será igual a: $" + v.calcularCostoDePeaje());
+        System.out.println("El costo total de combustible será igual a: $" + v.calcularCosteDeCombustible(v.getDistancia()));
+        System.out.println("El costo total del viaje será igual a: $" + v.calcularCostoTotal());
     }
 
 }
