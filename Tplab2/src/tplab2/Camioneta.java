@@ -37,9 +37,10 @@ public class Camioneta extends Vehiculo {
     public void setCombustible(Combustible combustible) {
         this.combustible = combustible;
     }
-    
-    
-
+        
+    //Según la consigna, un auto gasta 10L de combustible cada 100km, calculamos 
+    //cuanto combustible gasta en la distancia total del viaje y lo multiplicamos
+    //por el precio por litro del combustible cargado.
     @Override
     public double calcularCosteDeCombustible(Double distancia) {
         return (((distancia/100)*10)*combustible.getPrecio());

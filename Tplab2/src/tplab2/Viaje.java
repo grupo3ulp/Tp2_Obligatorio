@@ -69,6 +69,9 @@ public class Viaje {
         this.distancia = distancia;
     }
 
+    //Se verifica primero si las ciudades están sobre la misma ruta, en ese caso, se calcula
+    //la distancia restando ambos kilometrajes y devolviendo el valor absoluto del mismo.
+    //En caso de que no estén sobre la misma ruta, se le pide la distancia al usuario.
     public void calcularDistancia() {
         Scanner leer = new Scanner(System.in);
         if (ciudadDeOrigen.getRuta() == ciudadDeDestino.getRuta()) {
@@ -91,11 +94,14 @@ public class Viaje {
 
     }
 
+    //Se suman el costo del combustible y el costo del peaje
     public double calcularCostoTotal() {
         return calcularCosteDeCombustible(distancia) + calcularCostoDePeaje();
 
     }
 
+    //Se le pasa por parámetro la distancia previamente calculada y se llama a
+    //los métodos específicos de las subclases para calcular el combustible
     public double calcularCosteDeCombustible(Double distancia) {
         return this.vehiculo.calcularCosteDeCombustible(distancia);
     }
