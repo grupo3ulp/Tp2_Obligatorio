@@ -108,8 +108,12 @@ public class Viaje {
 
     @Override
     public String toString() {
-        return "Viaje [cantidadDePeajes=" + cantidadDePeajes + ", ciudadDeDestino=" + ciudadDeDestino
-                + ", ciudadDeOrigen=" + ciudadDeOrigen + ", distancia=" + distancia + ", vehiculo=" + vehiculo + "]";
+        return "-Cantidad De Peajes: " + cantidadDePeajes + "\n"
+                + "-Ciudad De Destino: " + ciudadDeDestino + "\n"
+                + "-Ciudad De Origen: " + ciudadDeOrigen + "\n"
+                + "-Distancia: " + distancia + " kilometros \n"
+                + "-Vehiculo: " + vehiculo.getClass().getSimpleName() + " " + "\n" + vehiculo;
     }
+
 
 }

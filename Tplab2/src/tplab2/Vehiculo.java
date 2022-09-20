@@ -47,9 +47,10 @@ public abstract class Vehiculo<T> {
 
     @Override
     public String toString() {
-        return "Vehiculo [Combustible: " + combustible + ", Marca: " + marca + ", Patente: " + patente + "]";
+        return "\t"+"\t"+"\t"+"Combustible: " + combustible+"\n"
+                +"\t"+"\t"+"\t"+ "Marca: " + marca +"\n"
+                +"\t"+"\t" +"\t"+ "Patente: " + patente;
     }
-
     
 
 }

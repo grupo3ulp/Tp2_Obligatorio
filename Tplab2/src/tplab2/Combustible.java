@@ -32,7 +32,7 @@ public class Combustible {
 
     @Override
     public String toString() {
-        return "Combustible{" + "Tipo: " + tipo + ", Precio: " + precio + '}';
+        return "(Tipo: " + tipo + " - Precio: " + precio + ')';
     }
     
        

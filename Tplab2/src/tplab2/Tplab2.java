@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Tplab2 {
 
-    public static Scanner leer = new Scanner(System.in);
+    public static Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
     public static void main(String[] args) {
         String ciuo, ciud;
@@ -103,19 +103,19 @@ public class Tplab2 {
                         Auto a = new Auto();
                         a.crearVehiculo();
                         v.setVehiculo(a);
-                        flag = false;
+                        flag3 = false;
                         break;
                     case "camioneta":
                         Camioneta c = new Camioneta();
                         c.crearVehiculo();
                         v.setVehiculo(c);
-                        flag = false;
+                        flag3 = false;
                         break;
                     case "camion":
                         Camion ca = new Camion();
                         ca.crearVehiculo();
                         v.setVehiculo(ca);
-                        flag = false;
+                        flag3 = false;
                         break;
                 }
             }
@@ -127,9 +127,9 @@ public class Tplab2 {
         System.out.println("Los detalles de su viaje son los siguientes:");
         System.out.println(v);
 
-        System.out.println("El costo de peajes será igual a: $" + v.calcularCostoDePeaje());
-        System.out.println("El costo de combustible será igual a: $" + v.calcularCosteDeCombustible(v.getDistancia()));
-        System.out.println("El costo total del viaje será igual a: $" + v.calcularCostoTotal());
+        System.out.println("-El costo de peajes será igual a: $" + v.calcularCostoDePeaje());
+        System.out.println("-El costo de combustible será igual a: $" + v.calcularCosteDeCombustible(v.getDistancia()));
+        System.out.println("-El costo total del viaje será igual a: $" + v.calcularCostoTotal());
     }
 
 }
