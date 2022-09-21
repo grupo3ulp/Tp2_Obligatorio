@@ -3,6 +3,8 @@ package tplab2;
 
 import static tplab2.Tplab2.leer;
 
+import java.util.InputMismatchException;
+
 
 public class Camioneta extends Vehiculo { 
 
@@ -53,8 +55,18 @@ public class Camioneta extends Vehiculo {
         marca = leer.next();
         System.out.println("Ingrese el tipo de combustible de su camioneta");
         combustible.setTipo(leer.next());
-        System.out.println("Ingrese el precio por litro de su combustible");
-        combustible.setPrecio(leer.nextDouble());
+        boolean c = false;
+        do {
+            try {
+                System.out.println("Ingrese el precio por litro de su combustible");
+                combustible.setPrecio(leer.nextDouble());
+                c = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Opción no válida. Se espera recibir un número.");
+                System.out.println("_____________________________________________________________________");
+                leer.next();
+            }
+        } while (!c);
         System.out.println("Ingrese la patente de su camioneta");
         patente = leer.next();
         return this;

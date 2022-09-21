@@ -1,7 +1,8 @@
 
 package tplab2;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
+import static tplab2.Tplab2.leer;
 
 public class Viaje {
     private Ciudad ciudadDeOrigen;
@@ -69,16 +70,28 @@ public class Viaje {
         this.distancia = distancia;
     }
 
-    //Se verifica primero si las ciudades están sobre la misma ruta, en ese caso, se calcula
-    //la distancia restando ambos kilometrajes y devolviendo el valor absoluto del mismo.
-    //En caso de que no estén sobre la misma ruta, se le pide la distancia al usuario.
+    // Se verifica primero si las ciudades están sobre la misma ruta, en ese caso,
+    // se calcula
+    // la distancia restando ambos kilometrajes y devolviendo el valor absoluto del
+    // mismo.
+    // En caso de que no estén sobre la misma ruta, se le pide la distancia al
+    // usuario.
     public void calcularDistancia() {
-        Scanner leer = new Scanner(System.in);
+        boolean verifica = false;
         if (ciudadDeOrigen.getRuta() == ciudadDeDestino.getRuta()) {
             distancia = Math.abs((ciudadDeDestino.getKm() - ciudadDeOrigen.getKm()));
         } else {
-            System.out.println("¿Qué distancia hay entre la ciudad de origen y la de destino?");
-            distancia = leer.nextDouble();
+            do {
+                try {
+                    System.out.println("¿Qué distancia hay entre la ciudad de origen y la de destino?");
+                    distancia = leer.nextDouble();
+                    verifica = true;
+                } catch (InputMismatchException e) {
+                    System.out.println("Opción no válida. Se espera recibir un número.");
+                    System.out.println("_____________________________________________________________________");
+                    leer.next();
+                }
+            } while (!verifica);
         }
 
     }
@@ -94,14 +107,14 @@ public class Viaje {
 
     }
 
-    //Se suman el costo del combustible y el costo del peaje
+    // Se suman el costo del combustible y el costo del peaje
     public double calcularCostoTotal() {
         return calcularCosteDeCombustible(distancia) + calcularCostoDePeaje();
 
     }
 
-    //Se le pasa por parámetro la distancia previamente calculada y se llama a
-    //los métodos específicos de las subclases para calcular el combustible
+    // Se le pasa por parámetro la distancia previamente calculada y se llama a
+    // los métodos específicos de las subclases para calcular el combustible
     public double calcularCosteDeCombustible(Double distancia) {
         return this.vehiculo.calcularCosteDeCombustible(distancia);
     }
@@ -114,6 +127,5 @@ public class Viaje {
                 + "-Distancia: " + distancia + " kilometros \n"
                 + "-Vehiculo: " + vehiculo.getClass().getSimpleName() + " " + "\n" + vehiculo;
     }
-
 
 }

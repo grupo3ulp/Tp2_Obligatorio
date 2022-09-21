@@ -1,11 +1,18 @@
+/*
+ * INTEGRANTES:
+ * Luna Lopardo
+ * Dante Rogriguez
+ * Marco Silva
+ */
 package tplab2;
 
-import static java.lang.System.out;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Tplab2 {
 
+    //Remover ".useDelimiter("\n")" si se abre en VSC u otro IDE que no sea NetBeans;
     public static Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
     public static void main(String[] args) {
@@ -14,10 +21,10 @@ public class Tplab2 {
         boolean flag1 = true;
         boolean flag3 = true;
 
-        //Creamos un nuevo viaje
+        // Creamos un nuevo viaje
         Viaje v = new Viaje();
 
-        //Creamos un ArrayList para guardar todas las ciudades disponibles para elegir
+        // Creamos un ArrayList para guardar todas las ciudades disponibles para elegir
         ArrayList<Ciudad> ciudades = new ArrayList();
         Ciudad c1 = new Ciudad(10, 1d, "Latia");
         Ciudad c2 = new Ciudad(10, 20d, "Luson");
@@ -34,8 +41,11 @@ public class Tplab2 {
 
         System.out.println("Bienvenido al calculador de costos de viaje de Turistour!");
 
-        //Le mostramos al usuario todas las ciudades disponibles para que elija la ciudad de origen y destino
-        //Una vez que se eligen las 2 ciudades correctamente, se setean en Viaje y se llama al método de calcular distancia.
+        // Le mostramos al usuario todas las ciudades disponibles para que elija la
+        // ciudad de origen y destino
+        // Una vez que se eligen las 2 ciudades correctamente, se setean en los
+        // atributos de Ciudad de origen y Ciudad de destino en Viaje y se
+        // llama al método de calcular distancia.
         do {
             System.out.println("A continuación seleccione la ciudad de origen de la siguiente lista:");
             for (Ciudad ciudad : ciudades) {
@@ -80,23 +90,34 @@ public class Tplab2 {
             System.out.println("_____________________________________________________________________");
         } while (flag1);
 
+        // Le preguntamos al usuario cuántos peajes hay en el camino y lo seteamos en el
+        // atributo del viaje creado.
+        boolean valido = false;
+        do {
+            try {
+                System.out.println("¿Cuántos peajes hay entre las ciudades?");
+                int peajes = leer.nextInt();
+                v.setCantidadDePeajes(peajes);
+                valido = true;
+                System.out.println("_____________________________________________________________________");
+            } catch (InputMismatchException e) {
+                System.out.println("Opción no válida. Se espera recibir un número entero.");
+                System.out.println("_____________________________________________________________________");
+                leer.next();
+            }
+        } while (!valido);
 
-        //Le preguntamos al usuario cuántos peajes hay en el camino y lo seteamos en el atributo del viaje creado.
-        System.out.println("¿Cuántos peajes hay entre las ciudades?");
-        int peajes = leer.nextInt();
-        v.setCantidadDePeajes(peajes);
-        System.out.println("_____________________________________________________________________");
-
-        //Acá creamos el vehículo del usuario, chequeamos que sea un vehículo válido y con un switch
-        //llamamos a los métodos de "crearVehiculo" específico de cada tipo de vehículo;
-        //Para finalizar, seteamos el vehículo creado dentro del atributo vehículo de Viaje.
+        // Acá creamos el vehículo del usuario y con un switch lamamos a los métodos de
+        // "crearVehiculo" específico de cada tipo de vehículo;
+        // Para finalizar, seteamos el vehículo creado dentro del atributo vehículo de
+        // Viaje.
         do {
             System.out.println("A continuación ingrese los datos de su vehículo:");
             System.out.println("¿Qué tipo de vehículo tiene? (Auto, camion, camioneta)");
-            String vehi = leer.next();
-            if (!vehi.equalsIgnoreCase("auto") && !vehi.equalsIgnoreCase("camion")
-                    && !vehi.equalsIgnoreCase("camioneta")) {
+            String vehi = leer.next().toLowerCase();
+            if (!vehi.equals("auto") && !vehi.equals("camion") && !vehi.equals("camioneta")) {
                 System.out.println("Tipo de vehículo inválido");
+                System.out.println("_____________________________________________________________________");
             } else {
                 switch (vehi) {
                     case "auto":
@@ -119,11 +140,10 @@ public class Tplab2 {
                         break;
                 }
             }
-
         } while (flag3);
         System.out.println("_____________________________________________________________________");
 
-        //Imprimimos los detalles finales del viaje y todos los costos calculados
+        // Imprimimos los detalles finales del viaje y todos los costos calculados
         System.out.println("Los detalles de su viaje son los siguientes:");
         System.out.println(v);
 
